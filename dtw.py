@@ -45,3 +45,21 @@ def dtw(x, y, dist=euclidian_dist, lookup=default_lookup, return_all=False):
     
 #     return dist, C, D1, path
     return dist, path
+
+def constraint_lookup(w=0.1):
+    def func(D, i, j):
+        n = D.shape[0]
+        k = n*w
+        lookup_list = [
+            (i, j),
+            (i, j+1),
+            (i+1, j),
+        ]
+        
+        dist = float('inf')
+        for a, b in lookup_list:
+            if a-k < b and b-k < a:
+                dist = min(dist, D[a, b])
+                
+        return dist
+    return func
