@@ -13,7 +13,7 @@ def dtw_plot(x, y, path, show_every=10, gap=0.1, ax=None):
         fig, ax = plt.subplots(figsize=(18, 8))
     
     for c, i, j in zip(range(len(path[0])), *path):
-        if c % 10 == 0:
+        if c % show_every == 0:
             ax.plot([i, j], [x[i]+gap, y[j]], color='r')
     
     ts_plot(x+gap, ax=ax)
