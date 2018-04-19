@@ -11,3 +11,5 @@ def load_data(name, data_dir, group='TRAIN'):
             X.append(x_)
             y.append(y_)
     return np.array(X), np.array(y)
+
+all_dataset = lambda data_dir: list(map(lambda t: re.findall(r'(.*)_(?:TRAIN|TEST)', t)[0], os.listdir(data_dir)))
